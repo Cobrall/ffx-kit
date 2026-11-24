@@ -35,3 +35,12 @@ See `manifest.json` for per-variant SHA-256 and per-test diffs.
 
 ## License
 MIT (this repo). AMD FidelityFX sources remain MIT, see `THIRD_PARTY_NOTICES.md`.
+
+## Rust reference implementation
+
+`rust/cas_golden.rs` is a zero-dependency Rust port of the CPU golden model.
+Drop it into your project's test harness to validate translated CAS shaders
+against AMD's intended output (not against naive "mathematically exact" math,
+which disagrees by up to ~8.5% of signal due to AMD's fast-math bit hacks).
+
+No external crates required. Compiles on any target with `f32` IEEE-754.

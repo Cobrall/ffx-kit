@@ -1,7 +1,8 @@
 import hashlib, itertools, json, pathlib, subprocess, time
 import numpy as np
 import wgpu
-from cas_golden import cas_golden
+from cas_golden import cas_golden, EXACT
+from cas_h_golden import cas_h_golden, EXACT_H
 from run_gpu import find_dxc, build, run_gpu, test_image
 
 HERE = pathlib.Path(__file__).resolve().parent
@@ -27,30 +28,54 @@ def main():
     adapter = wgpu.gpu.request_adapter_sync(power_preference="high-performance")
     device = adapter.request_device_sync()
     ver = subprocess.run([dxc, "--version"], capture_output=True, text=True).stdout.strip()
-    report = {"date": time.strftime("%Y-%m-%d %H:%M"), "gpu": dict(adapter.info),
-              "dxc": ver, "variants": {}}
+    report = {"date": time.strftime("%Y-%m-%d %H:%M"), "gpu": dict(adapter.info), "dxc": ver, "variants": {}, "variants_h": {}}
     imgs = list(images()); ok = True; spv_fast = None
+    
+    # FP32 variants
     for bd, gs, sl in itertools.product((0,1), repeat=3):
         defines = [n for n,v in (("CAS_BETTER_DIAGONALS",bd),("CAS_GO_SLOWER",gs),("CAS_SLOW",sl)) if v]
         tag = f"bd{bd}_gs{gs}_sl{sl}"
-        spv = build(dxc, defines, tag)
+        spv = build(dxc, defines, tag, "cas.hlsl")
         if tag == "bd0_gs0_sl0": spv_fast = spv
         kw = dict(better_diagonals=bool(bd), go_slower=bool(gs), slow=bool(sl))
         worst = 0.0; tests = []
         for name, img in imgs:
             for s in (0.0, 0.5, 1.0):
-                m = float(np.abs(run_gpu(device, spv, img, s) - cas_golden(img, s, **kw)).max())
+                m = float(np.abs(run_gpu(device, spv, img, s, "cas.hlsl") - cas_golden(img, s, **kw)).max())
                 worst = max(worst, m); tests.append({"image": name, "sharpness": s, "max_diff": m})
         good = worst < 1e-3; ok &= good
-        report["variants"][tag] = {"defines": defines, "sha256": hashlib.sha256(spv).hexdigest(),
-                                   "worst_max_diff": worst, "pass": good, "tests": tests}
-        print(f"[{tag}] worst={worst:.2e}  {'PASS' if good else 'FAIL'}")
+        report["variants"][tag] = {"defines": defines, "sha256": hashlib.sha256(spv).hexdigest(), "worst_max_diff": worst, "pass": good, "tests": tests}
+        print(f"[fp32 {tag}] worst={worst:.2e}  {'PASS' if good else 'FAIL'}")
+
+    # FP16 variants
+    for bd, gs, sl in itertools.product((0,1), repeat=3):
+        defines = [n for n,v in (("CAS_BETTER_DIAGONALS",bd),("CAS_GO_SLOWER",gs),("CAS_SLOW",sl)) if v]
+        defines.append("CAS_PACKED_ONLY")
+        tag = f"h_bd{bd}_gs{gs}_sl{sl}"
+        spv = build(dxc, defines, tag, "cas_h.hlsl")
+        kw = dict(better_diagonals=bool(bd), go_slower=bool(gs), slow=bool(sl))
+        worst = 0.0; tests = []
+        for name, img in imgs:
+            img_h = img.astype(np.float16) # ??? CPU golden model
+            for s in (0.0, 0.5, 1.0):
+                # GPU ???????? float32, ?? ?????? ?????? ?????? cast to half
+                gpu_out = run_gpu(device, spv, img, s, "cas_h.hlsl").astype(np.float32)
+                cpu_out = cas_h_golden(img_h, s, **kw).astype(np.float32)
+                m = float(np.abs(gpu_out - cpu_out).max())
+                worst = max(worst, m); tests.append({"image": name, "sharpness": s, "max_diff": m})
+        # ?????? ??? fp16 ???? ???? ??-?? ?????????? ?????? ??????????
+        good = worst < 0.015
+        ok &= good
+        report["variants_h"][tag] = {"defines": defines, "sha256": hashlib.sha256(spv).hexdigest(), "worst_max_diff": worst, "pass": good, "tests": tests}
+        print(f"[fp16 {tag}] worst={worst:.4f}  {'PASS' if good else 'FAIL'}")
+
     big = big_image(2160, 3840)
-    t0 = time.perf_counter(); g = run_gpu(device, spv_fast, big, 0.5)
+    t0 = time.perf_counter(); g = run_gpu(device, spv_fast, big, 0.5, "cas.hlsl")
     ms = 1000*(time.perf_counter()-t0)
     m4k = float(np.abs(g - cas_golden(big, 0.5)).max()); ok &= m4k < 1e-3
     report["4k"] = {"max_diff": m4k, "pass": m4k < 1e-3, "full_cycle_ms": round(ms,1)}
-    print(f"[4K fast s=0.5] max={m4k:.2e}  {'PASS' if m4k<1e-3 else 'FAIL'}  (full cycle {ms:.0f} ms incl. readback)")
+    print(f"[4K fp32 fast s=0.5] max={m4k:.2e}  {'PASS' if m4k<1e-3 else 'FAIL'}  (full cycle {ms:.0f} ms)")
+    
     report["all_pass"] = ok
     (HERE/"manifest.json").write_text(json.dumps(report, indent=2), encoding="utf-8")
     print("manifest.json written.", "ALL PASS" if ok else "FAIL present - send full log")

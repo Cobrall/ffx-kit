@@ -1,0 +1,45 @@
+#define A_GPU 1
+#define A_HLSL 1
+#define A_HALF 1
+#include "ffx_a.h"
+
+// ?????? ???????? float4, ????? wgpu-py ?? ????? ?????? ??? ????????????? half
+[[vk::binding(0, 0)]]
+StructuredBuffer<float4> InBuf : register(t0);
+[[vk::binding(1, 0)]]
+RWStructuredBuffer<float4> OutBuf : register(u0);
+[[vk::binding(2, 0)]]
+StructuredBuffer<float4> Params : register(t1);
+
+// ????????? ??? float, ????? ??????? ? half ??? ?????????
+AH3 CasLoadH(ASW2 p) {
+    int2 q = clamp(ASU2(p), int2(0,0), int2(Params[0].xy) - int2(1,1));
+    float4 val = InBuf[q.y * int(Params[0].x) + q.x];
+    return AH3(val.xyz);
+}
+
+void CasInputH(inout AH2 r, inout AH2 g, inout AH2 b) {}
+#include "ffx_cas.h"
+
+[numthreads(64,1,1)]
+void main(uint3 dtid : SV_DispatchThreadID) {
+    uint W = uint(Params[0].x), H = uint(Params[0].y);
+    
+    // Packed math: 1 ????? ???????????? 2 ???????
+    uint idx = dtid.x * 2;
+    if (idx >= W*H) return;
+
+    AU2 ip = AU2(idx % W, idx / W);
+    AF1 sharp = -1.0 / lerp(8.0, 5.0, saturate(Params[0].z));
+    AU4 const0 = AU4(0,0,0,0);
+    AU4 const1 = AU4(asuint(sharp), 0, 0, 0);
+
+    AH2 r0, g0, b0;
+    CasFilterH(r0, g0, b0, ip, const0, const1, true);
+
+    // ??????????: .x ??? ?????? ???????, .y ??? ??????
+    OutBuf[idx] = float4(AF1(r0.x), AF1(g0.x), AF1(b0.x), 1.0);
+    if (idx + 1 < W*H) {
+        OutBuf[idx+1] = float4(AF1(r0.y), AF1(g0.y), AF1(b0.y), 1.0);
+    }
+}

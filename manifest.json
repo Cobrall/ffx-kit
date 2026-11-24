@@ -1,5 +1,5 @@
 {
-  "date": "2026-11-24 10:46",
+  "date": "2026-11-24 11:56",
   "gpu": {
     "vendor": "NVIDIA",
     "architecture": "",
@@ -818,10 +818,824 @@
       ]
     }
   },
+  "variants_h": {
+    "h_bd0_gs0_sl0": {
+      "defines": [
+        "CAS_PACKED_ONLY"
+      ],
+      "sha256": "9e23e7a160b769eaf5642527cc357f5f43aa0ea3f65c48c6775f19980ad301c9",
+      "worst_max_diff": 0.9995932579040527,
+      "pass": false,
+      "tests": [
+        {
+          "image": "synthetic",
+          "sharpness": 0.0,
+          "max_diff": 0.8937036991119385
+        },
+        {
+          "image": "synthetic",
+          "sharpness": 0.5,
+          "max_diff": 0.9099621772766113
+        },
+        {
+          "image": "synthetic",
+          "sharpness": 1.0,
+          "max_diff": 0.9099621772766113
+        },
+        {
+          "image": "flat",
+          "sharpness": 0.0,
+          "max_diff": 0.000732421875
+        },
+        {
+          "image": "flat",
+          "sharpness": 0.5,
+          "max_diff": 0.00048828125
+        },
+        {
+          "image": "flat",
+          "sharpness": 1.0,
+          "max_diff": 0.00146484375
+        },
+        {
+          "image": "black",
+          "sharpness": 0.0,
+          "max_diff": 0.0
+        },
+        {
+          "image": "black",
+          "sharpness": 0.5,
+          "max_diff": 0.0
+        },
+        {
+          "image": "black",
+          "sharpness": 1.0,
+          "max_diff": 0.0
+        },
+        {
+          "image": "white",
+          "sharpness": 0.0,
+          "max_diff": 0.0029296875
+        },
+        {
+          "image": "white",
+          "sharpness": 0.5,
+          "max_diff": 0.00341796875
+        },
+        {
+          "image": "white",
+          "sharpness": 1.0,
+          "max_diff": 0.00341796875
+        },
+        {
+          "image": "impulse",
+          "sharpness": 0.0,
+          "max_diff": 0.7005370855331421
+        },
+        {
+          "image": "impulse",
+          "sharpness": 0.5,
+          "max_diff": 0.7004150152206421
+        },
+        {
+          "image": "impulse",
+          "sharpness": 1.0,
+          "max_diff": 0.7001708745956421
+        },
+        {
+          "image": "noise",
+          "sharpness": 0.0,
+          "max_diff": 0.9994459748268127
+        },
+        {
+          "image": "noise",
+          "sharpness": 0.5,
+          "max_diff": 0.9994459748268127
+        },
+        {
+          "image": "noise",
+          "sharpness": 1.0,
+          "max_diff": 0.9995932579040527
+        }
+      ]
+    },
+    "h_bd0_gs0_sl1": {
+      "defines": [
+        "CAS_SLOW",
+        "CAS_PACKED_ONLY"
+      ],
+      "sha256": "34e2b2ae909a39ef1e93efc228707b1bf7b9ab84a1655679b87f429e0130b48b",
+      "worst_max_diff": 0.9995932579040527,
+      "pass": false,
+      "tests": [
+        {
+          "image": "synthetic",
+          "sharpness": 0.0,
+          "max_diff": 0.8937036991119385
+        },
+        {
+          "image": "synthetic",
+          "sharpness": 0.5,
+          "max_diff": 0.9099621772766113
+        },
+        {
+          "image": "synthetic",
+          "sharpness": 1.0,
+          "max_diff": 0.9099621772766113
+        },
+        {
+          "image": "flat",
+          "sharpness": 0.0,
+          "max_diff": 0.000732421875
+        },
+        {
+          "image": "flat",
+          "sharpness": 0.5,
+          "max_diff": 0.00048828125
+        },
+        {
+          "image": "flat",
+          "sharpness": 1.0,
+          "max_diff": 0.00146484375
+        },
+        {
+          "image": "black",
+          "sharpness": 0.0,
+          "max_diff": 0.0
+        },
+        {
+          "image": "black",
+          "sharpness": 0.5,
+          "max_diff": 0.0
+        },
+        {
+          "image": "black",
+          "sharpness": 1.0,
+          "max_diff": 0.0
+        },
+        {
+          "image": "white",
+          "sharpness": 0.0,
+          "max_diff": 0.0029296875
+        },
+        {
+          "image": "white",
+          "sharpness": 0.5,
+          "max_diff": 0.00341796875
+        },
+        {
+          "image": "white",
+          "sharpness": 1.0,
+          "max_diff": 0.00341796875
+        },
+        {
+          "image": "impulse",
+          "sharpness": 0.0,
+          "max_diff": 0.7005370855331421
+        },
+        {
+          "image": "impulse",
+          "sharpness": 0.5,
+          "max_diff": 0.7004150152206421
+        },
+        {
+          "image": "impulse",
+          "sharpness": 1.0,
+          "max_diff": 0.7001708745956421
+        },
+        {
+          "image": "noise",
+          "sharpness": 0.0,
+          "max_diff": 0.9995932579040527
+        },
+        {
+          "image": "noise",
+          "sharpness": 0.5,
+          "max_diff": 0.9995932579040527
+        },
+        {
+          "image": "noise",
+          "sharpness": 1.0,
+          "max_diff": 0.9995932579040527
+        }
+      ]
+    },
+    "h_bd0_gs1_sl0": {
+      "defines": [
+        "CAS_GO_SLOWER",
+        "CAS_PACKED_ONLY"
+      ],
+      "sha256": "9e23e7a160b769eaf5642527cc357f5f43aa0ea3f65c48c6775f19980ad301c9",
+      "worst_max_diff": 0.9995932579040527,
+      "pass": false,
+      "tests": [
+        {
+          "image": "synthetic",
+          "sharpness": 0.0,
+          "max_diff": 0.8932154178619385
+        },
+        {
+          "image": "synthetic",
+          "sharpness": 0.5,
+          "max_diff": 0.9099621772766113
+        },
+        {
+          "image": "synthetic",
+          "sharpness": 1.0,
+          "max_diff": 0.9099621772766113
+        },
+        {
+          "image": "flat",
+          "sharpness": 0.0,
+          "max_diff": 0.0
+        },
+        {
+          "image": "flat",
+          "sharpness": 0.5,
+          "max_diff": 0.0
+        },
+        {
+          "image": "flat",
+          "sharpness": 1.0,
+          "max_diff": 0.0
+        },
+        {
+          "image": "black",
+          "sharpness": 0.0,
+          "max_diff": NaN
+        },
+        {
+          "image": "black",
+          "sharpness": 0.5,
+          "max_diff": NaN
+        },
+        {
+          "image": "black",
+          "sharpness": 1.0,
+          "max_diff": NaN
+        },
+        {
+          "image": "white",
+          "sharpness": 0.0,
+          "max_diff": 0.0
+        },
+        {
+          "image": "white",
+          "sharpness": 0.5,
+          "max_diff": 0.0
+        },
+        {
+          "image": "white",
+          "sharpness": 1.0,
+          "max_diff": 0.0
+        },
+        {
+          "image": "impulse",
+          "sharpness": 0.0,
+          "max_diff": 0.7000488042831421
+        },
+        {
+          "image": "impulse",
+          "sharpness": 0.5,
+          "max_diff": 0.7000488042831421
+        },
+        {
+          "image": "impulse",
+          "sharpness": 1.0,
+          "max_diff": 0.6999267339706421
+        },
+        {
+          "image": "noise",
+          "sharpness": 0.0,
+          "max_diff": 0.9994459748268127
+        },
+        {
+          "image": "noise",
+          "sharpness": 0.5,
+          "max_diff": 0.9994459748268127
+        },
+        {
+          "image": "noise",
+          "sharpness": 1.0,
+          "max_diff": 0.9995932579040527
+        }
+      ]
+    },
+    "h_bd0_gs1_sl1": {
+      "defines": [
+        "CAS_GO_SLOWER",
+        "CAS_SLOW",
+        "CAS_PACKED_ONLY"
+      ],
+      "sha256": "34e2b2ae909a39ef1e93efc228707b1bf7b9ab84a1655679b87f429e0130b48b",
+      "worst_max_diff": 0.9995932579040527,
+      "pass": false,
+      "tests": [
+        {
+          "image": "synthetic",
+          "sharpness": 0.0,
+          "max_diff": 0.8932154178619385
+        },
+        {
+          "image": "synthetic",
+          "sharpness": 0.5,
+          "max_diff": 0.9099621772766113
+        },
+        {
+          "image": "synthetic",
+          "sharpness": 1.0,
+          "max_diff": 0.9099621772766113
+        },
+        {
+          "image": "flat",
+          "sharpness": 0.0,
+          "max_diff": 0.0
+        },
+        {
+          "image": "flat",
+          "sharpness": 0.5,
+          "max_diff": 0.0
+        },
+        {
+          "image": "flat",
+          "sharpness": 1.0,
+          "max_diff": 0.0
+        },
+        {
+          "image": "black",
+          "sharpness": 0.0,
+          "max_diff": NaN
+        },
+        {
+          "image": "black",
+          "sharpness": 0.5,
+          "max_diff": NaN
+        },
+        {
+          "image": "black",
+          "sharpness": 1.0,
+          "max_diff": NaN
+        },
+        {
+          "image": "white",
+          "sharpness": 0.0,
+          "max_diff": 0.0
+        },
+        {
+          "image": "white",
+          "sharpness": 0.5,
+          "max_diff": 0.0
+        },
+        {
+          "image": "white",
+          "sharpness": 1.0,
+          "max_diff": 0.0
+        },
+        {
+          "image": "impulse",
+          "sharpness": 0.0,
+          "max_diff": 0.7000488042831421
+        },
+        {
+          "image": "impulse",
+          "sharpness": 0.5,
+          "max_diff": 0.7000488042831421
+        },
+        {
+          "image": "impulse",
+          "sharpness": 1.0,
+          "max_diff": 0.6999267339706421
+        },
+        {
+          "image": "noise",
+          "sharpness": 0.0,
+          "max_diff": 0.9995932579040527
+        },
+        {
+          "image": "noise",
+          "sharpness": 0.5,
+          "max_diff": 0.9995932579040527
+        },
+        {
+          "image": "noise",
+          "sharpness": 1.0,
+          "max_diff": 0.9995932579040527
+        }
+      ]
+    },
+    "h_bd1_gs0_sl0": {
+      "defines": [
+        "CAS_BETTER_DIAGONALS",
+        "CAS_PACKED_ONLY"
+      ],
+      "sha256": "9e5e2907bf6f9033cc662d7007b76f3e3de3ac4917dbd30437e938ab141ab06b",
+      "worst_max_diff": 0.9995932579040527,
+      "pass": false,
+      "tests": [
+        {
+          "image": "synthetic",
+          "sharpness": 0.0,
+          "max_diff": 0.8937036991119385
+        },
+        {
+          "image": "synthetic",
+          "sharpness": 0.5,
+          "max_diff": 0.9099621772766113
+        },
+        {
+          "image": "synthetic",
+          "sharpness": 1.0,
+          "max_diff": 0.9099621772766113
+        },
+        {
+          "image": "flat",
+          "sharpness": 0.0,
+          "max_diff": 0.000732421875
+        },
+        {
+          "image": "flat",
+          "sharpness": 0.5,
+          "max_diff": 0.00048828125
+        },
+        {
+          "image": "flat",
+          "sharpness": 1.0,
+          "max_diff": 0.00146484375
+        },
+        {
+          "image": "black",
+          "sharpness": 0.0,
+          "max_diff": 0.0
+        },
+        {
+          "image": "black",
+          "sharpness": 0.5,
+          "max_diff": 0.0
+        },
+        {
+          "image": "black",
+          "sharpness": 1.0,
+          "max_diff": 0.0
+        },
+        {
+          "image": "white",
+          "sharpness": 0.0,
+          "max_diff": 0.0029296875
+        },
+        {
+          "image": "white",
+          "sharpness": 0.5,
+          "max_diff": 0.00341796875
+        },
+        {
+          "image": "white",
+          "sharpness": 1.0,
+          "max_diff": 0.00341796875
+        },
+        {
+          "image": "impulse",
+          "sharpness": 0.0,
+          "max_diff": 0.7005370855331421
+        },
+        {
+          "image": "impulse",
+          "sharpness": 0.5,
+          "max_diff": 0.7004150152206421
+        },
+        {
+          "image": "impulse",
+          "sharpness": 1.0,
+          "max_diff": 0.7001708745956421
+        },
+        {
+          "image": "noise",
+          "sharpness": 0.0,
+          "max_diff": 0.9994459748268127
+        },
+        {
+          "image": "noise",
+          "sharpness": 0.5,
+          "max_diff": 0.9994459748268127
+        },
+        {
+          "image": "noise",
+          "sharpness": 1.0,
+          "max_diff": 0.9995932579040527
+        }
+      ]
+    },
+    "h_bd1_gs0_sl1": {
+      "defines": [
+        "CAS_BETTER_DIAGONALS",
+        "CAS_SLOW",
+        "CAS_PACKED_ONLY"
+      ],
+      "sha256": "f8c8b0e3f3535abbc6fcb9bdeab41db7f3ac43582bd0bc0ec335c20ac4836d18",
+      "worst_max_diff": 0.9995932579040527,
+      "pass": false,
+      "tests": [
+        {
+          "image": "synthetic",
+          "sharpness": 0.0,
+          "max_diff": 0.8937036991119385
+        },
+        {
+          "image": "synthetic",
+          "sharpness": 0.5,
+          "max_diff": 0.9099621772766113
+        },
+        {
+          "image": "synthetic",
+          "sharpness": 1.0,
+          "max_diff": 0.9099621772766113
+        },
+        {
+          "image": "flat",
+          "sharpness": 0.0,
+          "max_diff": 0.000732421875
+        },
+        {
+          "image": "flat",
+          "sharpness": 0.5,
+          "max_diff": 0.00048828125
+        },
+        {
+          "image": "flat",
+          "sharpness": 1.0,
+          "max_diff": 0.00146484375
+        },
+        {
+          "image": "black",
+          "sharpness": 0.0,
+          "max_diff": 0.0
+        },
+        {
+          "image": "black",
+          "sharpness": 0.5,
+          "max_diff": 0.0
+        },
+        {
+          "image": "black",
+          "sharpness": 1.0,
+          "max_diff": 0.0
+        },
+        {
+          "image": "white",
+          "sharpness": 0.0,
+          "max_diff": 0.0029296875
+        },
+        {
+          "image": "white",
+          "sharpness": 0.5,
+          "max_diff": 0.00341796875
+        },
+        {
+          "image": "white",
+          "sharpness": 1.0,
+          "max_diff": 0.00341796875
+        },
+        {
+          "image": "impulse",
+          "sharpness": 0.0,
+          "max_diff": 0.7005370855331421
+        },
+        {
+          "image": "impulse",
+          "sharpness": 0.5,
+          "max_diff": 0.7004150152206421
+        },
+        {
+          "image": "impulse",
+          "sharpness": 1.0,
+          "max_diff": 0.7001708745956421
+        },
+        {
+          "image": "noise",
+          "sharpness": 0.0,
+          "max_diff": 0.9995932579040527
+        },
+        {
+          "image": "noise",
+          "sharpness": 0.5,
+          "max_diff": 0.9995932579040527
+        },
+        {
+          "image": "noise",
+          "sharpness": 1.0,
+          "max_diff": 0.9995932579040527
+        }
+      ]
+    },
+    "h_bd1_gs1_sl0": {
+      "defines": [
+        "CAS_BETTER_DIAGONALS",
+        "CAS_GO_SLOWER",
+        "CAS_PACKED_ONLY"
+      ],
+      "sha256": "9e5e2907bf6f9033cc662d7007b76f3e3de3ac4917dbd30437e938ab141ab06b",
+      "worst_max_diff": 0.9995932579040527,
+      "pass": false,
+      "tests": [
+        {
+          "image": "synthetic",
+          "sharpness": 0.0,
+          "max_diff": 0.8932154178619385
+        },
+        {
+          "image": "synthetic",
+          "sharpness": 0.5,
+          "max_diff": 0.9099621772766113
+        },
+        {
+          "image": "synthetic",
+          "sharpness": 1.0,
+          "max_diff": 0.9099621772766113
+        },
+        {
+          "image": "flat",
+          "sharpness": 0.0,
+          "max_diff": 0.0
+        },
+        {
+          "image": "flat",
+          "sharpness": 0.5,
+          "max_diff": 0.0
+        },
+        {
+          "image": "flat",
+          "sharpness": 1.0,
+          "max_diff": 0.0
+        },
+        {
+          "image": "black",
+          "sharpness": 0.0,
+          "max_diff": NaN
+        },
+        {
+          "image": "black",
+          "sharpness": 0.5,
+          "max_diff": NaN
+        },
+        {
+          "image": "black",
+          "sharpness": 1.0,
+          "max_diff": NaN
+        },
+        {
+          "image": "white",
+          "sharpness": 0.0,
+          "max_diff": 0.0
+        },
+        {
+          "image": "white",
+          "sharpness": 0.5,
+          "max_diff": 0.0
+        },
+        {
+          "image": "white",
+          "sharpness": 1.0,
+          "max_diff": 0.0
+        },
+        {
+          "image": "impulse",
+          "sharpness": 0.0,
+          "max_diff": 0.7000488042831421
+        },
+        {
+          "image": "impulse",
+          "sharpness": 0.5,
+          "max_diff": 0.7000488042831421
+        },
+        {
+          "image": "impulse",
+          "sharpness": 1.0,
+          "max_diff": 0.6999267339706421
+        },
+        {
+          "image": "noise",
+          "sharpness": 0.0,
+          "max_diff": 0.9994459748268127
+        },
+        {
+          "image": "noise",
+          "sharpness": 0.5,
+          "max_diff": 0.9994459748268127
+        },
+        {
+          "image": "noise",
+          "sharpness": 1.0,
+          "max_diff": 0.9995932579040527
+        }
+      ]
+    },
+    "h_bd1_gs1_sl1": {
+      "defines": [
+        "CAS_BETTER_DIAGONALS",
+        "CAS_GO_SLOWER",
+        "CAS_SLOW",
+        "CAS_PACKED_ONLY"
+      ],
+      "sha256": "f8c8b0e3f3535abbc6fcb9bdeab41db7f3ac43582bd0bc0ec335c20ac4836d18",
+      "worst_max_diff": 0.9995932579040527,
+      "pass": false,
+      "tests": [
+        {
+          "image": "synthetic",
+          "sharpness": 0.0,
+          "max_diff": 0.8932154178619385
+        },
+        {
+          "image": "synthetic",
+          "sharpness": 0.5,
+          "max_diff": 0.9099621772766113
+        },
+        {
+          "image": "synthetic",
+          "sharpness": 1.0,
+          "max_diff": 0.9099621772766113
+        },
+        {
+          "image": "flat",
+          "sharpness": 0.0,
+          "max_diff": 0.0
+        },
+        {
+          "image": "flat",
+          "sharpness": 0.5,
+          "max_diff": 0.0
+        },
+        {
+          "image": "flat",
+          "sharpness": 1.0,
+          "max_diff": 0.0
+        },
+        {
+          "image": "black",
+          "sharpness": 0.0,
+          "max_diff": NaN
+        },
+        {
+          "image": "black",
+          "sharpness": 0.5,
+          "max_diff": NaN
+        },
+        {
+          "image": "black",
+          "sharpness": 1.0,
+          "max_diff": NaN
+        },
+        {
+          "image": "white",
+          "sharpness": 0.0,
+          "max_diff": 0.0
+        },
+        {
+          "image": "white",
+          "sharpness": 0.5,
+          "max_diff": 0.0
+        },
+        {
+          "image": "white",
+          "sharpness": 1.0,
+          "max_diff": 0.0
+        },
+        {
+          "image": "impulse",
+          "sharpness": 0.0,
+          "max_diff": 0.7000488042831421
+        },
+        {
+          "image": "impulse",
+          "sharpness": 0.5,
+          "max_diff": 0.7000488042831421
+        },
+        {
+          "image": "impulse",
+          "sharpness": 1.0,
+          "max_diff": 0.6999267339706421
+        },
+        {
+          "image": "noise",
+          "sharpness": 0.0,
+          "max_diff": 0.9995932579040527
+        },
+        {
+          "image": "noise",
+          "sharpness": 0.5,
+          "max_diff": 0.9995932579040527
+        },
+        {
+          "image": "noise",
+          "sharpness": 1.0,
+          "max_diff": 0.9995932579040527
+        }
+      ]
+    }
+  },
   "4k": {
     "max_diff": 2.980232238769531e-07,
     "pass": true,
-    "full_cycle_ms": 219.4
+    "full_cycle_ms": 270.4
   },
-  "all_pass": true
+  "all_pass": false
 }

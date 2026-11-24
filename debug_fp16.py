@@ -1,0 +1,25 @@
+import numpy as np
+from cas_golden import cas_golden
+
+# ????????? ?????? fp32, ????? ?????????, ??? ??????? ??????? ????????
+img = np.full((64,64,3), 0.5, np.float32)
+out_cpu = cas_golden(img, 0.5)
+print("CPU fp32 flat:", out_cpu.min(), out_cpu.max())
+print("Expected: 0.5, 0.5")
+
+# ?????????, ??? DXC ??????????? fp16 ???????
+import subprocess, pathlib
+dxc = "dxc"  # ??? ?????? ???? ? dxc.exe
+hlsl_file = pathlib.Path("cas_h.hlsl")
+if hlsl_file.exists():
+    cmd = [dxc, "-T", "cs_6_2", "-E", "main", "-spirv", "-O3", 
+           "-I", str(pathlib.Path("FidelityFX-CAS/ffx-cas")),
+           "-D", "CAS_PACKED_ONLY",
+           str(hlsl_file), "-Fo", "test_fp16.spv"]
+    r = subprocess.run(cmd, capture_output=True, text=True)
+    print("DXC compile status:", "OK" if r.returncode == 0 else "FAIL")
+    if r.returncode != 0:
+        print("STDOUT:", r.stdout[:500])
+        print("STDERR:", r.stderr[:500])
+else:
+    print("cas_h.hlsl not found!")
